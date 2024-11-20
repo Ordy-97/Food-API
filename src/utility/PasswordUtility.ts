@@ -25,7 +25,7 @@ export const GenerateSignature = async (payload: AuthPayload) => {
 }
 
 //fonction qui permet de décoder notre token/signature et l'assimile l'objet user de la requête qui est de type payload
-//cette fonction est appellée dan notre middleware et qui est passée à notre route
+//cette fonction est appellée dans notre middleware et qui est passée à notre route
 export const ValidateSignature = async(req: Request) => {
 
     const signature = req.get('Authorization');
