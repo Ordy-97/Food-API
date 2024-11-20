@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation</title>
+  <style>
+    body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        margin: 0;
+        padding: 0;
+        background-color: #f4f4f9;
+      }
+      .container {
+        max-width: 800px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+      color: #3b71ca;
+    }
+    .section {
+      margin-bottom: 40px;
+    }
+    ul {
+      list-style-type: none;
+      padding: 0;
+    }
+    li {
+      margin: 10px 0;
+    }
+    code {
+      background: #f4f4f4;
+      padding: 5px;
+      border-radius: 5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>API Documentation</h1>
+  <p>This documentation provides an overview of all available API routes grouped by module.</p>
+
+  <!-- Admin Routes -->
+  <div class="section">
+    <h2>Admin Routes</h2>
+    <ul>
+      <li><code>POST /admin/vandor</code> - Create a new vendor</li>
+      <li><code>GET /admin/vandors</code> - Get all vendors</li>
+      <li><code>GET /admin/vandor/:id</code> - Get a vendor by ID</li>
+      <li><code>PUT /admin/delivery/verify</code> - Verify a delivery user</li>
+      <li><code>GET /admin/delivery/</code> - Get all delivery users</li>
+      <li><code>GET /admin/transactions</code> - Get all transactions</li>
+      <li><code>GET /admin/transaction/:id</code> - Get a transaction by ID</li>
+    </ul>
+  </div>
+
+  <!-- Customer Routes -->
+  <div class="section">
+    <h2>Customer Routes</h2>
+    <ul>
+      <li><code>POST /customer/signup</code> - Sign up a new customer</li>
+      <li><code>POST /customer/login</code> - Log in as a customer</li>
+      <li><code>PATCH /customer/verify</code> - Verify customer account</li>
+      <li><code>GET /customer/otp</code> - Request OTP</li>
+      <li><code>GET /customer/profile</code> - Get customer profile</li>
+      <li><code>PATCH /customer/profile</code> - Edit customer profile</li>
+      <li><code>POST /customer/cart</code> - Add items to cart</li>
+      <li><code>GET /customer/cart</code> - Get cart items</li>
+      <li><code>DELETE /customer/cart</code> - Delete cart items</li>
+      <li><code>GET /customer/offer/verify/:id</code> - Verify an offer</li>
+      <li><code>POST /customer/create-payment</code> - Create a payment</li>
+      <li><code>POST /customer/create-order</code> - Create an order</li>
+      <li><code>GET /customer/orders</code> - Get all orders</li>
+      <li><code>GET /customer/order/:id</code> - Get an order by ID</li>
+    </ul>
+  </div>
+
+  <!-- Delivery Routes -->
+  <div class="section">
+    <h2>Delivery Routes</h2>
+    <ul>
+      <li><code>POST /delivery/signup</code> - Sign up a delivery user</li>
+      <li><code>POST /delivery/login</code> - Log in as a delivery user</li>
+      <li><code>PUT /delivery/change-status</code> - Change service status</li>
+      <li><code>GET /delivery/profile</code> - Get delivery user profile</li>
+      <li><code>PATCH /delivery/profile</code> - Edit delivery user profile</li>
+    </ul>
+  </div>
+
+  <!-- Shopping Routes -->
+  <div class="section">
+    <h2>Shopping Routes</h2>
+    <ul>
+      <li><code>GET /:pincode</code> - Get food availability by pincode</li>
+      <li><code>GET /top-restaurants/:pincode</code> - Get top restaurants by pincode</li>
+      <li><code>GET /foods-in-30-min/:pincode</code> - Get foods available in 30 minutes</li>
+      <li><code>GET /search/:pincode</code> - Search for foods by pincode</li>
+      <li><code>GET /offers/:pincode</code> - Get available offers by pincode</li>
+      <li><code>GET /restaurant/:id</code> - Find a restaurant by ID</li>
+    </ul>
+  </div>
+
+  <!-- Vendor Routes -->
+  <div class="section">
+    <h2>Restaurants Routes</h2>
+    <ul>
+      <li><code>POST /vendor/login</code> - Vendor login</li>
+      <li><code>GET /vendor/profile</code> - Get vendor profile</li>
+      <li><code>PATCH /vendor/profile</code> - Update vendor profile</li>
+      <li><code>PATCH /vendor/service</code> - Update vendor service status</li>
+      <li><code>PATCH /vendor/coverimage</code> - Update vendor cover image</li>
+      <li><code>POST /vendor/food</code> - Add food items</li>
+      <li><code>GET /vendor/foods</code> - Get all food items</li>
+      <li><code>GET /vendor/orders</code> - Get all current orders</li>
+      <li><code>PUT /vendor/order/:id/process</code> - Process an order</li>
+      <li><code>GET /vendor/order/:id</code> - Get order details by ID</li>
+      <li><code>GET /vendor/offers</code> - Get vendor offers</li>
+      <li><code>POST /vendor/offer</code> - Add a new offer</li>
+      <li><code>PUT /vendor/offer/:id</code> - Edit an offer</li>
+    </ul>
+  </div>
+  </div>
+</body>
+</html>
+
