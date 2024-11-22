@@ -7,8 +7,8 @@ require('dotenv').config();
 import { PORT } from "./config";
 
 
+const app = express();
 const Startserver = async () =>{
-    const app = express();
     
     
     await App(app);
@@ -25,3 +25,5 @@ const Startserver = async () =>{
 }
 
 Startserver();
+
+export default app;
