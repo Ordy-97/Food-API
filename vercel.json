@@ -1,7 +1,6 @@
 {
     "version": 2,
     "outputDirectory": "dist",
-    "startCommand": "npm start",
     "routes": [
       {
         "src": "/(.*)",
