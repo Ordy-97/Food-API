@@ -2,7 +2,7 @@ import express from "express";
 import App from './services/ExpressApp';
 import dbConnection from './services/Database';
 
-require('dotenv').config();
+// require('dotenv').config();
 
 import { PORT } from "./config";
 

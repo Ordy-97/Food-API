@@ -1,3 +1,4 @@
+require('dotenv').config();
 
 export const MONGO_URI = `mongodb+srv://${process.env.NODE_FOOD_API_USER}:${process.env.NODE_FOOD_API_PASSWORD_SECRET}@cluster0.c8hs5ga.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
 
