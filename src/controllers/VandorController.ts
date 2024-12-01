@@ -5,6 +5,9 @@ import { GenerateSignature, ValidatePassword } from '../utility'
 import { CreateFoodInputs } from '../dto/Food.dto'
 import { Food, Offer, Order } from '../models'
 
+// Déterminez la base URL (en fonction de l'environnement)
+const BASE_URL = process.env.BASE_URL || 'http://localhost:8000';
+
 export const VandorLogin = async (req:Request, res:Response, next:NextFunction) => {
     const { email, password } = <VandorLoginInputs>req.body
 
@@ -107,7 +110,7 @@ export const UpdateVandorCoverImage = async (req:Request, res:Response, next:Nex
 
             const files = req.files as Express.Multer.File[];
 
-            const images = files.map((file: Express.Multer.File) => file.filename);
+            const images = files.map((file: Express.Multer.File) => `${BASE_URL}/images/${file.filename}`);
 
            vandor.coverImages.push(...images); //ajoute les objets food créé dans l'attribut 'coverImage' de 'vandor'
            const result = await vandor.save();
@@ -124,43 +127,44 @@ export const UpdateVandorCoverImage = async (req:Request, res:Response, next:Nex
 
 
 
-export const AddFood = async (req:Request, res:Response, next:NextFunction) => {
+export const AddFood = async (req: Request, res: Response, next: NextFunction) => {
+    const user = req.user; // Token de l'utilisateur
+    const { name, description, category, foodType, readyTime, price } = <CreateFoodInputs>req.body;
 
-    const user = req.user; // c'est notre token
-    const { name, description, category, foodType, readyTime, price } = <CreateFoodInputs>req.body
-
-    if(user){
+    if (user) {
         const vandor = await FindVandor(user._id);
 
-        if(vandor !== null){
-
+        if (vandor !== null) {
             const files = req.files as [Express.Multer.File];
 
-            const images = files.map((file: Express.Multer.File) => file.filename);
+            // Mappez les fichiers pour inclure la base URL
+            const images = files.map((file: Express.Multer.File) => `${BASE_URL}/images/${file.filename}`);
 
+            // Créez le nouveau food
             const createdFood = await Food.create({
                 vandorId: vandor._id,
                 name: name,
                 description: description,
                 category: category,
                 foodType: foodType,
-                images: images,
+                images: images, // URLs complètes des images
                 readyTime: readyTime,
                 price: price,
-                rating: 0
-            })
+                rating: 0,
+            });
 
-           vandor.foods.push(createdFood); //ajoute l'objet food créé dans l'attribut 'foods' de 'vandor'
-           const result = await vandor.save();
+            // Ajoutez l'objet food créé à l'attribut 'foods' de 'vandor'
+            vandor.foods.push(createdFood);
+            const result = await vandor.save();
 
-           return res.json(result)
-
+            return res.json(result);
         }
-        return res.status(403).json({"message": "None Authorized"});
+
+        return res.status(403).json({ message: 'None Authorized' });
     }
 
-    return res.json({"message": "Something went wrong with add food."});
-}
+    return res.status(500).json({ message: 'Something went wrong with add food.' });
+};
 
 
 
